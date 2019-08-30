@@ -1,5 +1,13 @@
+version: '3'
+
 services:
-  pybullet_ros:
-    image: pybullet_ros
+  pybullet-ros:
+    image: pybullet_ros:latest
     volumes:
-      - ./pybullet_ros/pybullet_ros:/catkin_ws/pybullet_ros
+    - ./pybullet_ros/pybullet_ros:/catkin_ws/pybullet_ros
+    networks:
+    - ros
+    command: [ "/bin/bash", "-c", "source /opt/ros/melodic/setup.bash && cd ./ros/launch/ && pwd && ls && roslaunch pybullet_ros bringup_robot_example.launch" ]
+
+networks:
+  ros:
