@@ -1,0 +1,5 @@
+services:
+  pybullet_ros:
+    image: pybullet_ros
+    volumes:
+      - ./pybullet_ros/pybullet_ros:/catkin_ws/pybullet_ros

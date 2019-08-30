@@ -1,0 +1,3 @@
+[submodule "pybullet_ros"]
+	path = pybullet_ros/pybullet_ros
+	url = https://github.com/oscar-lima/pybullet_ros.git
