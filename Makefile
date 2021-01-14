@@ -9,8 +9,3 @@ down:
 
 logs:
 	docker-compose -f logs pybullet-ros
-
-install:
-	docker build \
-		-t pybullet_ros:latest \
-		pybullet_ros/
