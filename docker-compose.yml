@@ -3,11 +3,21 @@ version: '3'
 services:
   pybullet-ros:
     image: pybullet_ros:latest
+    build:
+      context: pybullet_ros
+      args:
+        ROS_DISTRO: "melodic"
+    user: root
+    environment: 
+      - DISPLAY
     volumes:
-    - ./pybullet_ros/pybullet_ros:/catkin_ws/pybullet_ros
+      - ./pybullet_ros/pybullet_ros:/catkin_ws/src/pybullet_ros
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
     networks:
-    - ros
-    command: [ "/bin/bash", "-c", "source /opt/ros/melodic/setup.bash && cd ./ros/launch/ && pwd && ls && roslaunch pybullet_ros bringup_robot_example.launch" ]
+      - ros
+    entrypoint: /entrypoint.bash
+    command: [ "roslaunch", "pybullet_ros", "bringup_robot_example.launch" ]
+    privileged: true
 
 networks:
   ros:
